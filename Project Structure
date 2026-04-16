@@ -1,0 +1,5 @@
+contracts/ — Solidity contracts
+frontend/ — Next.js dApp
+test/ — Unit tests
+scripts/ — Deployment scripts
+
