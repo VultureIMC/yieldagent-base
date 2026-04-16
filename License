@@ -1,0 +1,13 @@
+
+#### 2. .gitignore (root)
+
+```gitignore
+node_modules
+.env
+.env.local
+coverage
+artifacts
+cache
+frontend/.next
+frontend/out
+*.log
