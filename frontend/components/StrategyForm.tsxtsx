@@ -1,0 +1,54 @@
+'use client';
+
+import { useState } from 'react';
+
+export default function StrategyForm() {
+  const [riskProfile, setRiskProfile] = useState('');
+  const [agentName, setAgentName] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleCreate = async () => {
+    if (!agentName || !riskProfile) return;
+    setLoading(true);
+    // TODO: Call createAgent contract function here with wagmi
+    alert(`Creating agent "${agentName}" with risk profile: ${riskProfile}`);
+    setLoading(false);
+  };
+
+  return (
+    <div className="bg-zinc-900 p-8 rounded-2xl border border-zinc-800">
+      <h2 className="text-3xl font-semibold mb-6">Create Your Yield Agent</h2>
+      
+      <div className="space-y-6">
+        <div>
+          <label className="block text-sm mb-2">Agent Name</label>
+          <input
+            type="text"
+            value={agentName}
+            onChange={(e) => setAgentName(e.target.value)}
+            className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3"
+            placeholder="My Moderate Yield Agent"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm mb-2">Risk Profile (describe in plain text)</label>
+          <textarea
+            value={riskProfile}
+            onChange={(e) => setRiskProfile(e.target.value)}
+            className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 h-32"
+            placeholder="Moderate risk. Target 15-25% APY with low liquidation risk. Focus on stablecoin pools."
+          />
+        </div>
+
+        <button
+          onClick={handleCreate}
+          disabled={loading}
+          className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 rounded-xl font-medium disabled:opacity-50"
+        >
+          {loading ? "Creating Agent..." : "Deploy AI Agent"}
+        </button>
+      </div>
+    </div>
+  );
+}
